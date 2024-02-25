@@ -35,6 +35,15 @@ func findLastDigit(s string) int {
 	return -1
 }
 
+func findCalibrationValue(s string) int {
+	firstDigit := findFirstDigit(s)
+	lastDigit := findLastDigit(s)
+	if (firstDigit != -1 && lastDigit != -1) {
+		return firstDigit * 10 + lastDigit
+	}
+	return -1
+}
+
 func main() {
 	// Set up the calibration strings
 	calibrationStrings := []string{
@@ -49,13 +58,9 @@ func main() {
 
 	// Loop through the calibration strings
 	for _, s := range calibrationStrings {
-		// Find the first and last digits
-		firstDigit := findFirstDigit(s)
-		lastDigit := findLastDigit(s)
+		calibrationValue := findCalibrationValue(s)
 
-		// If both digits are found, calculate the calibration value
-		if (firstDigit != -1 && lastDigit != -1) {
-			calibrationValue := firstDigit * 10 + lastDigit
+		if (calibrationValue != -1) {
 			fmt.Println("Calibration value:", calibrationValue)
 			calibrationSum += calibrationValue
 		} else {
